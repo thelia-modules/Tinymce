@@ -28,21 +28,25 @@ class TinyMCELanguage extends AbstractSmartyPlugin
     private $locale;
 
     public function __construct(RequestStack $requestStack)
-    {
-        $request = $requestStack->getCurrentRequest();
-        if (!$request || !$request->hasSession() || !$request->getSession()->isStarted()) {
-            $this->locale = Lang::getDefaultLanguage()->getLocale();
-
-            return;
-        }
-
-        if (null !== $request->getSession()) {
-            $this->locale = $request->getSession()->getLang()->getLocale();
-        } else {
-            $this->locale = Lang::getDefaultLanguage()->getLocale();
-        }
+{
+    $request = $requestStack->getCurrentRequest();
+    
+    if (null === $request) {
+        $this->locale = Lang::getDefaultLanguage()->getLocale();
+        return;
+    }
+    
+    if (!$request->hasSession() || !$request->getSession()->isStarted()) {
+        $this->locale = Lang::getDefaultLanguage()->getLocale();
+        return;
     }
 
+    if (null !== $request->getSession()) {
+        $this->locale = $request->getSession()->getLang()->getLocale();
+    } else {
+        $this->locale = Lang::getDefaultLanguage()->getLocale();
+    }
+}
     public function guessTinyMCELanguage($params, \Smarty_Internal_Template $template)
     {
         // Find TinyMCE available languages
