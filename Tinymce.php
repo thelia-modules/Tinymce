@@ -13,6 +13,7 @@
 namespace Tinymce;
 
 use Propel\Runtime\Connection\ConnectionInterface;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator;
 use Symfony\Component\Filesystem\Filesystem;
 use Thelia\Action\Document;
 use Thelia\Model\ConfigQuery;
@@ -95,5 +96,13 @@ class Tinymce extends BaseModule
 
             $fileSystem->remove($this->webMediaPath);
         }
+    }
+
+    public static function configureServices(ServicesConfigurator $servicesConfigurator): void
+    {
+        $servicesConfigurator->load(self::getModuleCode().'\\', __DIR__)
+            ->exclude([__DIR__.'/I18n/*'])
+            ->autowire(true)
+            ->autoconfigure(true);
     }
 }
