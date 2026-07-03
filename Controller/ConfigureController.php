@@ -13,6 +13,7 @@
 namespace Tinymce\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Attribute\Route;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\AccessManager;
 use Thelia\Core\Security\Resource\AdminResources;
@@ -29,6 +30,7 @@ use Tinymce\Tinymce;
  */
 class ConfigureController extends BaseAdminController
 {
+    #[Route('/admin/tinymce/configure', name: 'tinymce.configure', methods: ['POST'])]
     public function configure()
     {
         if (null !== $response = $this->checkAuth(AdminResources::MODULE, 'Tinymce', AccessManager::UPDATE)) {
