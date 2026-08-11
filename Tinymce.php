@@ -79,14 +79,6 @@ class Tinymce extends BaseModule
             'available_text_areas',
             '#timymce_configuration-id-test_zone, .wysiwyg'
         );
-
-        // The custom CSS for the editor is populated when the admin saves it in /admin/module/Tinymce.
-        // Create an empty placeholder so {stylesheets file='assets/css/custom-css.less' ...} does not
-        // log "Asset ... was not found" on every back-office page render until the admin sets it.
-        $customCssPath = __DIR__.DS.'templates'.DS.'backOffice'.DS.'default'.DS.'assets'.DS.'css'.DS.'custom-css.less';
-        if (!$fileSystem->exists($customCssPath)) {
-            $fileSystem->dumpFile($customCssPath, '');
-        }
     }
 
     public function postDeactivation(ConnectionInterface $con = null): void
