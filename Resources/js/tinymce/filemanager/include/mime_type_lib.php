@@ -203,6 +203,7 @@ $mime_types = array(
 	'wax'     => 'audio/x-ms-wax',
 	'wbmp'    => 'image/vnd.wap.wbmp',
 	'wbxml'   => 'application/vnd.wap.wbxml',
+	'webp'    => 'image/webp',
 	'wm'      => 'video/x-ms-wm',
 	'wma'     => 'audio/x-ms-wma',
 	'wml'     => 'text/vnd.wap.wml',
